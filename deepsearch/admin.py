@@ -37,7 +37,9 @@ class IndexedModelFilter(admin.filters.SimpleListFilter):
                 continue
 
             model = self.parse_model(index_fieldname)
-            prefix = model._meta.app_label + '__' + model._meta.module_name
+            if model is None:
+                continue
+            prefix = model._meta.app_label + '__' + model._meta.model_name
             verbose_name = model._meta.verbose_name.capitalize()
             lookup_set.add((prefix, verbose_name))
 
