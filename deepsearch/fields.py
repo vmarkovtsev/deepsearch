@@ -25,7 +25,7 @@ class AccessorField(MultiValueField):
         self.related_model = related_model  # model at the end of the path
 
         if 'index_fieldname' not in kwargs:
-            index_fieldname = '__'.join([model._meta.app_label, model._meta.module_name] + accessor_path)
+            index_fieldname = '__'.join([model._meta.app_label, model._meta.model_name] + accessor_path)
             kwargs['index_fieldname'] = index_fieldname
 
         kwargs['model_attr'] = self._accessor_path[-1]
